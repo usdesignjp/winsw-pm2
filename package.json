@@ -1,0 +1,35 @@
+{
+  "name": "winsw-pm2",
+  "version": "1.0.0",
+  "description": "Making PM2 easy to use on Windows",
+  "keywords": [
+    "PM2",
+    "WinSW",
+    "Windows",
+    "service"
+  ],
+  "homepage": "https://github.com/usdesignjp/winsw-pm2#readme",
+  "bugs": {
+    "url": "https://github.com/usdesignjp/winsw-pm2/issues"
+  },
+  "license": "MIT",
+  "author": "Ueta System Design Studio",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/usdesignjp/winsw-pm2.git"
+  },
+  "scripts": {
+    "cleardump": "set /p \"=[]\" <nul >.pm2\\dump.pm2 || exit 0",
+    "grant": "icacls . /grant *S-1-5-19:(OI)(CI)(F)",
+    "postinstall": "npm run postinstall:npm && npm run postinstall:pm2",
+    "postinstall:npm": "if not exist .npm mkdir .npm",
+    "postinstall:pm2": "if not exist .pm2\\temp mkdir .pm2\\temp && npm run cleardump",
+    "test": "walkthrough.bat"
+  },
+  "dependencies": {
+    "pm2": "latest"
+  },
+  "os": [
+    "win32"
+  ]
+}
